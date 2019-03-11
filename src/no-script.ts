@@ -3,9 +3,11 @@ interface BlockScriptElement extends HTMLScriptElement {
   __type: string | null; // original type
 }
 
-class NoScriptElement extends HTMLElement {
+export const ALLOW_ATTRIBUTE = 'allow-execution'
+
+export class NoScriptElement extends HTMLElement {
   private observer = new MutationObserver(this.handleMutations.bind(this));
-  private blockedScripts = new WeakMap<BlockScriptElement, boolean>();
+  private processedScripts = new WeakMap<BlockScriptElement, boolean>();
   private observerAttached = false;
 
   constructor() {
@@ -47,22 +49,26 @@ class NoScriptElement extends HTMLElement {
   }
 
   block(script: BlockScriptElement) {
-    if (!this.blockedScripts.has(script)) {
-      script.__type = script.type || script.getAttribute('type');
-      script.__src = script.src || script.getAttribute('src');
-      script.innerHTML = '';
-      script.type = 'javascript/blocked';
-      script.src = '';
-      script.removeAttribute('src');
+    if (!this.processedScripts.has(script)) {
+      if (script.hasAttribute(ALLOW_ATTRIBUTE)) {
+        this.processedScripts.set(script, false);
+      } else {
+        script.__type = script.type || script.getAttribute('type');
+        script.__src = script.src || script.getAttribute('src');
+        script.innerHTML = '';
+        script.type = 'javascript/blocked';
+        script.src = '';
+        script.removeAttribute('src');
 
-      // Firefox specific code
-      const beforeScriptExecuteListener = function (event: Event) {
-        event.preventDefault();
-        script.removeEventListener('beforescriptexecute', beforeScriptExecuteListener);
-      };
-      script.addEventListener('beforescriptexecute', beforeScriptExecuteListener);
+        // Firefox specific code
+        const beforeScriptExecuteListener = function (event: Event) {
+          event.preventDefault();
+          script.removeEventListener('beforescriptexecute', beforeScriptExecuteListener);
+        };
+        script.addEventListener('beforescriptexecute', beforeScriptExecuteListener);
 
-      this.blockedScripts.set(script, true);
+        this.processedScripts.set(script, true);
+      }
     }
   }
 }

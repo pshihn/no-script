@@ -1,9 +1,9 @@
-"use strict";
-class NoScriptElement extends HTMLElement {
+export const ALLOW_ATTRIBUTE = 'allow-execution';
+export class NoScriptElement extends HTMLElement {
     constructor() {
         super();
         this.observer = new MutationObserver(this.handleMutations.bind(this));
-        this.blockedScripts = new WeakMap();
+        this.processedScripts = new WeakMap();
         this.observerAttached = false;
         this.attachObserver();
     }
@@ -36,20 +36,25 @@ class NoScriptElement extends HTMLElement {
         });
     }
     block(script) {
-        if (!this.blockedScripts.has(script)) {
-            script.__type = script.type || script.getAttribute('type');
-            script.__src = script.src || script.getAttribute('src');
-            script.innerHTML = '';
-            script.type = 'javascript/blocked';
-            script.src = '';
-            script.removeAttribute('src');
-            // Firefox specific code
-            const beforeScriptExecuteListener = function (event) {
-                event.preventDefault();
-                script.removeEventListener('beforescriptexecute', beforeScriptExecuteListener);
-            };
-            script.addEventListener('beforescriptexecute', beforeScriptExecuteListener);
-            this.blockedScripts.set(script, true);
+        if (!this.processedScripts.has(script)) {
+            if (script.hasAttribute(ALLOW_ATTRIBUTE)) {
+                this.processedScripts.set(script, false);
+            }
+            else {
+                script.__type = script.type || script.getAttribute('type');
+                script.__src = script.src || script.getAttribute('src');
+                script.innerHTML = '';
+                script.type = 'javascript/blocked';
+                script.src = '';
+                script.removeAttribute('src');
+                // Firefox specific code
+                const beforeScriptExecuteListener = function (event) {
+                    event.preventDefault();
+                    script.removeEventListener('beforescriptexecute', beforeScriptExecuteListener);
+                };
+                script.addEventListener('beforescriptexecute', beforeScriptExecuteListener);
+                this.processedScripts.set(script, true);
+            }
         }
     }
 }

@@ -1,11 +1,12 @@
 {
   "name": "no-script-element",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Custom element that disables all child script elements ",
   "main": "dist/no-script.js",
   "browser": "dist/no-script.js",
   "types": "dist/no-script.d.ts",
   "scripts": {
+    "build": "tsc && rollup -c",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -23,5 +24,9 @@
   "bugs": {
     "url": "https://github.com/pshihn/no-script/issues"
   },
-  "homepage": "https://github.com/pshihn/no-script#readme"
+  "homepage": "https://github.com/pshihn/no-script#readme",
+  "devDependencies": {
+    "rollup": "^1.6.0",
+    "typescript": "^3.3.3333"
+  }
 }
