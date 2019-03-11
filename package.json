@@ -1,5 +1,5 @@
 {
-  "name": "no-script",
+  "name": "no-script-element",
   "version": "0.1.0",
   "description": "Custom element that disables all child script elements ",
   "main": "dist/no-script.js",
