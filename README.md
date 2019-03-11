@@ -17,7 +17,7 @@ Consider the following code:
 </no-script>
 ```
 
-Nothing gets logged on in the console if `no-script` custom element is defined. 
+Nothing gets logged in the console.
 (Both `a.js` and `b.js` also log to the console.)
 
 [View the live demo](https://pshihn.github.io/no-script/demo/)
@@ -36,7 +36,7 @@ Nothing gets logged on in the console if `no-script` custom element is defined.
 </body>
 ```
 
-Also, `no-script` relies on mutation observers, which means its not guaranteed that the browser will not execute the script before firing the observer events. Though, having tested on modern Chrome, Safari, and Firefox, it works.
+Also, `no-script` relies on mutation observers, which means it's not guaranteed that the browser will not execute the script before firing the observer events. Though, having tested on modern Chrome, Safari, and Firefox, it works.
 
 ## Work in progress
-This element is result of a different experiment about controliing execution of third party javascript. I will be adding some of those features to this element such as enablong/scheduling disabled scripts. 
+This element is result of a different (not-open-source) experiment about controliing execution of third party javascript. I'm extracting the basics into an open web component. Plan is to add some of those features to this element such as enablong/scheduling disabled scripts. 
