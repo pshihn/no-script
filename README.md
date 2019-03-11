@@ -57,4 +57,4 @@ Any script that you want to be allowed to execute, add the attribute `allow-exec
 Also, `no-script` relies on mutation observers, which means it's not guaranteed that the browser will not execute the script before firing the observer events. Though, having tested on modern Chrome, Safari, and Firefox, it works.
 
 ## Work in progress
-This element is result of a different (not-open-source) experiment about controliing execution of third party javascript. I'm extracting the basics into an open web component. Plan is to add some of those features to this element such as enablong/scheduling disabled scripts. 
+This element is result of a different (not-open-source) experiment about controliing execution of third party javascript. I'm extracting the basics into an open web component. Plan is to add some of those features to this element such as enabling/scheduling disabled scripts. 
