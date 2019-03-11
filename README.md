@@ -20,9 +20,9 @@ Consider the following code:
 Nothing gets logged on in the console if `no-script` custom element is defined. 
 (Both `a.js` and `b.js` also log to the console.)
 
-[View the live demo]()
+[View the live demo](https://pshihn.github.io/no-script/demo/)
 
-## Caveat
+## Caveats
 `no-script` needs to be defined synchronously in the code, or at least defined before the html in question is parsed. 
 
 ```html
