@@ -1,0 +1,21 @@
+<html>
+
+<head>
+  <title>no-script</title>
+  <script src="../dist/no-script.js"></script>
+</head>
+
+<body>
+  <no-script>
+    <h4>no-script custom element demo</h4>
+    <p>There are scripts on this page that write to the console with a prefix <em>'Executed:'</em>.</p>
+    <p>If yo do not see these messages in the log, then no-script is doing its job.</p>
+    <script>
+      console.log('Executed: inline script');
+    </script>
+    <script src="./a.js"></script>
+    <script async src="./b.js"></script>
+  </no-script>
+</body>
+
+</html>

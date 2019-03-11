@@ -1,0 +1,27 @@
+{
+  "name": "no-script",
+  "version": "0.1.0",
+  "description": "Custom element that disables all child script elements ",
+  "main": "dist/no-script.js",
+  "browser": "dist/no-script.js",
+  "types": "dist/no-script.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pshihn/no-script.git"
+  },
+  "keywords": [
+    "noscript",
+    "customelement",
+    "no script",
+    "block script"
+  ],
+  "author": "Preet Shihn <preetshihn@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pshihn/no-script/issues"
+  },
+  "homepage": "https://github.com/pshihn/no-script#readme"
+}
