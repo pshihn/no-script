@@ -3,7 +3,8 @@
   "version": "0.2.0",
   "description": "Custom element that disables all child script elements ",
   "main": "dist/no-script.js",
-  "browser": "dist/no-script.js",
+  "module": "dist/no-script.js",
+  "browser": "dist/no-script-iife.js",
   "types": "dist/no-script.d.ts",
   "scripts": {
     "build": "tsc && rollup -c",

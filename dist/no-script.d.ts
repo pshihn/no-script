@@ -15,4 +15,4 @@ export declare class NoScriptElement extends HTMLElement {
     private handleMutations;
     block(script: BlockScriptElement): void;
 }
-export {};
+export { };
